@@ -1,0 +1,42 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Bun
+bun.lockb
+
+# Deno
+deno.lock
+.deno/
+
+# Build output
+dist/
+build/
+out/
+
+# Temp files
+*.tmp
+*.log
+*.cache
+.cache/
+.tmp/
+temp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Environment
+.env
+.env.*
