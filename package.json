@@ -1,6 +1,6 @@
 {
   "name": "json-seal-test-js",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Simple JavaScript test for json-seal",
   "main": "index.js",
   "type": "module",
