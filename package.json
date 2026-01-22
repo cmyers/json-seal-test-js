@@ -20,6 +20,6 @@
     "url": "https://github.com/cmyers/json-seal-test-js.git"
   },
   "dependencies": {
-    "json-seal": "^0.11.0"
+    "json-seal": "^0.12.0"
   }
 }
