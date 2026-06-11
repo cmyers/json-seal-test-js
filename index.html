@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>json-seal browser test</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #111;
+            color: #eee;
+            padding: 20px;
+        }
+
+        pre {
+            background: #222;
+            padding: 15px;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            /* allow wrapping */
+            overflow-wrap: break-word;
+            /* break long base64 strings */
+            word-break: break-all;
+            /* force wrap if needed */
+        }
+    </style>
+</head>
+
+<body>
+    <h2>json-seal browser test</h2>
+    <pre id="out"></pre>
+
+    <script type="module">
+        import { generateKeyPair, signPayload, verifyBackup } from "https://esm.sh/json-seal";
+
+        const out = document.getElementById("out");
+        const log = (...args) => {
+            out.textContent += args.join(" ") + "\n";
+        };
+
+        const pretty = (obj) => JSON.stringify(obj, null, 2);
+
+        const run = async () => {
+            const { privateKey, publicKey } = await generateKeyPair();
+
+            const backup = await signPayload({ id: 1000 }, privateKey, publicKey);
+
+            log("Original valid:", (await verifyBackup(backup)).valid);
+            log(pretty(backup), "\n");
+
+            backup.payload.id = 1001;
+
+            log("Tampered valid:", (await verifyBackup(backup)).valid);
+            log(pretty(backup), "\n");
+        };
+
+        run();
+    </script>
+</body>
+
+</html>

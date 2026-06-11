@@ -1,6 +1,6 @@
 {
   "name": "json-seal-test-js",
-  "version": "0.11.0",
+  "version": "0.13.0",
   "description": "Simple JavaScript test for json-seal",
   "main": "index.js",
   "type": "module",
@@ -20,6 +20,6 @@
     "url": "https://github.com/cmyers/json-seal-test-js.git"
   },
   "dependencies": {
-    "json-seal": "^0.12.0"
+    "json-seal": "^0.13.0"
   }
 }
