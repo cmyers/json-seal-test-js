@@ -40,7 +40,8 @@
 
         const pretty = (obj) => JSON.stringify(obj, null, 2);
 
-        const run = async () => {
+        const runRsaPss = async () => {
+            log("--- RSA-PSS ---");
             const { privateKey, publicKey } = await generateKeyPair();
 
             const backup = await signPayload({ id: 1000 }, privateKey, publicKey);
@@ -54,7 +55,23 @@
             log(pretty(backup), "\n");
         };
 
-        run();
+        const runEd25519 = async () => {
+            log("--- Ed25519 ---");
+            const { privateKey, publicKey } = await generateKeyPair("Ed25519");
+
+            const backup = await signPayload({ id: 2000 }, privateKey, publicKey, { algorithm: "Ed25519" });
+
+            log("Original valid:", (await verifyBackup(backup)).valid);
+            log(pretty(backup), "\n");
+
+            backup.payload.id = 2001;
+
+            log("Tampered valid:", (await verifyBackup(backup)).valid);
+            log(pretty(backup), "\n");
+        };
+
+        await runRsaPss();
+        await runEd25519();
     </script>
 </body>
 
